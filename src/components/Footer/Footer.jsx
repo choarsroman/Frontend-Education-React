@@ -1,5 +1,6 @@
 import TELEGA from '../../images/Vector.png'
 import styles from '../../styles/Footer.module.css'
+import { Link } from 'react-router'
 import QR from '../../images/Qrcode 1.png'
 import GP from '../../images/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png'
 import APPSTORE from '../../images/AppStore.png'
