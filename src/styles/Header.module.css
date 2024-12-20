@@ -65,10 +65,27 @@
 }
 
 .cart {
-  width: 14.92px;
-  height: 17.5px;
+  width: 18.92px;
+  height: 20.5px;
 }
 .user {
   width: 17px;
   height: 17px;
+}
+.cartWrapper {
+  position: relative;
+}
+
+.cartIndicator {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  right: 0;
+  margin-right: -5px;
+  border-radius: 50%;
+  background-color: #db4444;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
 }

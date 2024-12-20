@@ -1,9 +1,20 @@
 import styles from '../../styles/Header.module.css'
 import { IoSearch, IoCartOutline } from 'react-icons/io5'
 import { CiHeart, CiUser } from 'react-icons/ci'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
+import { FaHeart } from 'react-icons/fa'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import {
+  addToCartItem,
+  selectCart,
+  selectWishlist,
+} from '../../slices/CartSlice'
 
 const Header = () => {
+  const wishlist = useSelector(selectWishlist)
+  const cart = useSelector(selectCart)
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>Exclusive</div>
@@ -34,12 +45,21 @@ const Header = () => {
         </a>
       </form>
       <div className={styles.account}>
-        <a href="/">
-          <CiHeart className={styles.favourites} />
-        </a>
-        <a href="/">
-          <IoCartOutline className={styles.cart} />
-        </a>
+        <Link to="/wishlist">
+          {wishlist.length === 0 ? (
+            <CiHeart className={styles.favourites} />
+          ) : (
+            <FaHeart />
+          )}
+        </Link>
+        <div className={styles.cartWrapper}>
+          {cart.length !== 0 && (
+            <div className={styles.cartIndicator}>{cart.length}</div>
+          )}
+          <Link to="/cart">
+            <IoCartOutline className={styles.cart} />
+          </Link>
+        </div>
 
         <a href="/">
           <CiUser className={styles.user} />

@@ -1,0 +1,87 @@
+.wishlist {
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 0 60px;
+}
+.title {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 400;
+}
+.headerBtn {
+  padding: 16px 48px;
+  border: 1px solid #00000080;
+  border-radius: 4px;
+  background-color: transparent;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.column {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  flex: 0 0 20%;
+  margin-bottom: 20px;
+}
+
+.wishlist img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.name {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.price {
+  display: block;
+  font-size: 14px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #db4444;
+}
+.btn {
+  font-family: Poppins;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #db4444;
+  color: #fff;
+  font-size: 20px;
+  width: 100%;
+  transition: 0.3s ease;
+}
+.btn:active {
+  transform: scale(1.1);
+}
+
+.empty {
+  padding: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
