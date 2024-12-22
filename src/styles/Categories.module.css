@@ -1,5 +1,6 @@
 .categories {
-  border-bottom: 1px solid #000000;
+  padding: 80px 0;
+  border-bottom: 1px solid #000;
 }
 .label {
   font-size: 16px;
@@ -8,7 +9,6 @@
   margin-left: 10px;
 }
 .before {
-  padding-top: 80px;
   position: relative;
   display: flex;
   align-items: center;
@@ -21,34 +21,26 @@
   background-color: #db4444;
   border-radius: 4px;
 }
-.label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #db4444;
-  margin-left: 10px;
-}
 .browse {
   font-family: Inter;
   font-size: 36px;
   font-weight: 600;
 }
 .list {
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60px 0 79px;
 }
 
-.item {
-  padding: 30px 40px;
-  border: 1px solid #000000;
-  border-radius: 7px;
-  transition: 0.3s ease;
-  cursor: pointer;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 400;
+.link {
+  padding: 40px;
+  border: 1px solid #545454;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
 }
-.item:hover {
-  transform: scale(1.2);
+.link:hover {
+  transform: scale(1.1);
 }

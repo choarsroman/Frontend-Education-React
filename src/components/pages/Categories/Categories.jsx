@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from '../../../styles/Categories.module.css'
 
 const Categories = () => {
@@ -16,11 +17,13 @@ const Categories = () => {
       </div>
       <div className={styles.browse}>Browse By Category</div>
       <ul className={styles.list}>
-        {categories.map((el, i) => (
-          <li className={styles.item} key={i}>
-            {el}
-          </li>
-        ))}
+        {categories.map((el, i) => {
+          return (
+            <Link className={styles.link} key={i}>
+              {el}
+            </Link>
+          )
+        })}
       </ul>
     </div>
   )
