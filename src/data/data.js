@@ -40,9 +40,6 @@ export const products = [
     image:
       'https://esteema.ua/upload/product/large/42321300-42321300_1561624126.jpg',
   },
-]
-
-export const newProducts = [
   {
     id: 7,
     name: 'Шорти',

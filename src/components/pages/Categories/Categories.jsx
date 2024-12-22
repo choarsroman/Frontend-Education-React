@@ -1,13 +1,13 @@
-import styles from '../../../styles/Categories.module.css'
 import { Link } from 'react-router-dom'
+import styles from '../../../styles/Categories.module.css'
 
 const Categories = () => {
   const categories = [
-    'Одяг',
-    'Взуття',
-    'Меблі',
     'Книги',
     'Побутова техніка',
+    'Взуття',
+    'Аксесуари',
+    'Меблі',
     'Посуд',
   ]
   return (

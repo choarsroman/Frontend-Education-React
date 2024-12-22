@@ -1,11 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../../../styles/Products.module.css'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { IoSearch } from 'react-icons/io5'
 import { products } from '../../../data/data'
-import NewArrival from '../NewArrival/NewArrival'
+import { CiHeart } from 'react-icons/ci'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addToCartItem,
+  addToWishlistItem,
+  selectCart,
+  selectWishlist,
+} from '../../../slices/CartSlice'
 const Products = () => {
   const [viewAll, setViewAll] = useState(false)
+
+  const selectedProducts = viewAll ? products : products.slice(0, 6)
+
+  const dispatch = useDispatch()
+  const wishlist = useSelector(selectWishlist)
+  const cart = useSelector(selectCart)
+
+  const isInWishlist = (el) => wishlist.find((item) => item.id === el.id)
+  const isInCart = (el) => cart.find((item) => item.id === el.id)
+
+  const addToWishlist = (item) => {
+    dispatch(addToWishlistItem(item))
+  }
+
+  const addToCart = (item) => {
+    dispatch(addToCartItem({ ...item, quantity: 1 }))
+  }
 
   const handleToggleBtn = () => {
     setViewAll(!viewAll)
@@ -30,7 +54,7 @@ const Products = () => {
         </form>
       </div>
       <ul className={styles.list}>
-        {products.map((el) => {
+        {selectedProducts.map((el) => {
           return (
             <li key={el.id} className={styles.columns}>
               <Link>
@@ -38,14 +62,28 @@ const Products = () => {
               </Link>
               <span>{el.name}</span>
               <span>${el.price}</span>
+              <div className={styles.btns}>
+                <button
+                  onClick={() => addToWishlist(el)}
+                  className={styles.cartBtn}
+                >
+                  {isInWishlist(el) ? 'Вже у вішлисті' : 'Додати до вішлиста'}
+                </button>
+                <button
+                  onClick={() => addToCart(el)}
+                  className={styles.cartBtn}
+                >
+                  {isInCart(el) ? 'Вже у кошику' : 'Додати в кошик'}
+                </button>
+              </div>
             </li>
           )
         })}
       </ul>
-      {viewAll && <NewArrival />}
+
       <div className={styles.btnCenter}>
         <button className={styles.button} onClick={handleToggleBtn}>
-          View {viewAll ? `All` : `Less`} Products
+          View {viewAll ? `Less` : `All`} Products
         </button>
       </div>
     </div>
