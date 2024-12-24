@@ -98,3 +98,28 @@
   justify-content: center;
   gap: 10px;
 }
+.cart {
+  position: relative;
+}
+.cartIcon {
+  position: absolute;
+  top: 0px;
+  left: 75px;
+  width: 18px;
+  height: 22px;
+  transition: 0.35s ease;
+}
+.wishlistIcon {
+  position: absolute;
+  top: 30px;
+  left: 75px;
+  width: 20px;
+  height: 22px;
+  transition: 0.35s ease;
+}
+.cartIcon:hover {
+  transform: scale(1.2);
+}
+.wishlistIcon:hover {
+  transform: scale(1.2);
+}

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Cart from './components/pages/Cart/Cart'
 import Wishlist from './components/pages/Wishlist/Wishlist'
 import MainLayouts from './layouts/MainLayouts'

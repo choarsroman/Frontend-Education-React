@@ -1,34 +1,57 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from '../../../styles/Products.module.css'
 import { Link } from 'react-router-dom'
 import { IoSearch } from 'react-icons/io5'
-import { products } from '../../../data/data'
+import productsData from '../../assets/data.json'
 import { CiHeart } from 'react-icons/ci'
-import { useDispatch, useSelector } from 'react-redux'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import {
   addToCartItem,
   addToWishlistItem,
   selectCart,
+  selectSearch,
   selectWishlist,
+  setSearchQuery,
 } from '../../../slices/CartSlice'
+import ProductCart from './ProductCart'
 const Products = () => {
   const [viewAll, setViewAll] = useState(false)
-
-  const selectedProducts = viewAll ? products : products.slice(0, 6)
-
   const dispatch = useDispatch()
   const wishlist = useSelector(selectWishlist)
   const cart = useSelector(selectCart)
+  const searchQuery = useSelector(selectSearch)
+  const inputRef = useRef()
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const isInWishlist = (el) => wishlist.find((item) => item.id === el.id)
   const isInCart = (el) => cart.find((item) => item.id === el.id)
 
+  const filteredByTitle = productsData.filter((el) =>
+    el.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  const selectedProducts = viewAll
+    ? filteredByTitle
+    : filteredByTitle.slice(0, 6)
+
   const addToWishlist = (item) => {
-    dispatch(addToWishlistItem(item))
+    if (isInCart(item)) {
+      alert(`${item.name} буде видалено з корзини`)
+      dispatch(addToWishlistItem(item))
+    } else {
+      dispatch(addToWishlistItem(item))
+    }
   }
 
   const addToCart = (item) => {
-    dispatch(addToCartItem({ ...item, quantity: 1 }))
+    if (isInWishlist(item)) {
+      alert(`${item.name} буде видалено з вішлиста`)
+      dispatch(addToCartItem(item))
+    } else {
+      dispatch(addToCartItem({ ...item, quantity: 1 }))
+    }
   }
 
   const handleToggleBtn = () => {
@@ -44,7 +67,10 @@ const Products = () => {
       <div className={styles.search}>
         <form className={styles.form}>
           <input
+            ref={inputRef}
             className={styles.input}
+            value={searchQuery}
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             type="text"
             placeholder="What are you looking for?"
           />
@@ -57,6 +83,7 @@ const Products = () => {
         {selectedProducts.map((el) => {
           return (
             <li key={el.id} className={styles.columns}>
+              <ProductCart item={el} />
               <Link>
                 <img src={el.image} />
               </Link>
